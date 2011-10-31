@@ -1,0 +1,20 @@
+*{margin:0;padding:0;border:none;}
+html{font-family:'Varela Round',verdana;}
+a{color:#88a230;}
+
+#jobs{width:960px;margin:0 auto;}
+#jobs > .date{margin-top:25px;font-weight:bold;}
+#jobs .job {margin:5px;}
+#jobs .summary{padding:10px;border:1px solid #aaa;border-radius:4px;position:relative;cursor:pointer;}
+#jobs .active .summary{border-radius:0;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom-color:#ccc;}
+#jobs .summary:hover{background:#ffc;}
+
+#jobs .title{width:650px;display:inline-block;}
+#jobs .location{color:#666;font-size:80%;position:absolute;top:5px;right:5px;width:200px;text-align:right;}
+#jobs .desc{display:none;padding:10px;background:#f0f0f0;border-bottom-left-radius:5px;border-bottom-right-radius:5px;border:solid #ccc;border-width:0 1px 1px 1px;}
+#jobs .desc li{margin-left:35px;padding:3px;}
+#jobs .desc p{line-height:22px;}
+#jobs .details{padding:2px 5px 15px 0px;font-size:80%;position:relative;}
+#jobs .url{position:absolute;right:5px;}
+
+#jobs .summary.read .title, #jobs .summary.read .location{color:#aaa;}
