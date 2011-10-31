@@ -40,11 +40,11 @@ $(document).ready(function() {
   $(document).keydown(function(e) {
     var $item = null;
     if (e.keyCode == 40) {
-      if ($active == null || $jobs.index($active) ==($jobs.length-1)) { $item = $jobs.first() }
-      else { $item = $jobs.eq($jobs.index($active)+1); }
+      $item = $active == null ? $item = $jobs.first() : $jobs.eq($jobs.index($active)+1);
     }
     if (e.keyCode == 38) {
-      $item = $active == null ? $jobs.last() : $jobs.eq($jobs.index($active)-1);
+      if ($active == null) { $item = $jobs.last(); }
+      else if ($jobs.index($active) > 0) { $item = $jobs.eq($jobs.index($active)-1); }
     }
     if ($item != null && $item.length> 0) {
       $item.children('.summary').click().get(0).scrollIntoView(); 
