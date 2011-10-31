@@ -26,7 +26,7 @@ module Store
       PhusionPassenger.on_event(:starting_worker_process) do |forked|
         if forked
           @@redis.client.reconnect
-          @@redis.select(5)
+          @@redis.select(Settings.redis['database'])
         end
       end
     end
