@@ -20,7 +20,7 @@ $(document).ready(function() {
     
     if ($active != null) { 
       $active.children('.desc').hide(); 
-      $active.parent().removeClass('active');
+      $active.removeClass('active');
       var $previous = $active;
       $active = null;
       if ($previous.attr('data-url') == $parent.attr('data-url')) { return; }
