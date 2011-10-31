@@ -1,2 +1,2 @@
-require './github'
-require './so'
+require_relative('github')
+require_relative('so')

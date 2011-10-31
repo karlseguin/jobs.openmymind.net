@@ -1,4 +1,4 @@
-require './common'
+require_relative('common')
 require 'json'
 require 'time'
 require 'net/http'

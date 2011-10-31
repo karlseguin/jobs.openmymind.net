@@ -1,4 +1,4 @@
-require './common'
+require_relative('common')
 require 'rss/2.0'
 require 'time'
 require 'net/http'

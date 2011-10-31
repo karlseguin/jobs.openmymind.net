@@ -1,5 +1,5 @@
 require 'json/ext'
-require File.dirname(__FILE__) + '/../../lib/store'
+require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'store')
 #require 'rubberband'
 #require 'sanitize'
 
