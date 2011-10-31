@@ -1,1 +1,3 @@
 settings.yml
+Capfile
+lib/deploy.rb
