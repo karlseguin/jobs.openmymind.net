@@ -1,4 +1,5 @@
-require 'YAML'
+require 'yaml'
+
 class Settings 
   @@settings = YAML::load_file(File.dirname(__FILE__) + '/settings.yml')
   def self.method_missing(key)
