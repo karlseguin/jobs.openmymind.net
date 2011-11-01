@@ -18,24 +18,21 @@ module Store
 end
 Store.setup
 
-3.times do
-  job = Store.get_new_jobs
-  exit unless job
-  
-  location = ''
-  if job['location'].is_a?(Array)
-    location = job['location'].join(';')
-  elsif job['location'].is_a?(String)
-    location = job['location']
-  end
-  location = location[0..30]
-  
-  tweet = job['title'][0..110]
-  if location.length > 0
-    tweet = tweet[0..(110 - location.length)] + ' (' + location + ')'
-  end
-  tweet += ' ' + job['url'] + ' #job'
-  
-  Twitter.update(tweet)
-  sleep(1)
+job = Store.get_new_jobs
+exit unless job
+
+location = ''
+if job['location'].is_a?(Array)
+  location = job['location'].join(';')
+elsif job['location'].is_a?(String)
+  location = job['location']
 end
+location = location[0..30]
+
+tweet = job['title'][0..110]
+if location.length > 0
+  tweet = tweet[0..(110 - location.length)] + ' (' + location + ')'
+end
+tweet += ' ' + job['url'] + ' #job'
+
+Twitter.update(tweet)
