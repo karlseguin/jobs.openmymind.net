@@ -2,7 +2,10 @@
 html{font-family:'Varela Round',verdana;}
 a{color:#88a230;}
 
-#fork{position:fixed;top:0;right:0;}
+
+#menu{position:fixed;top:30px;left:5px;}
+#menu a{text-decoration:none;color:#777;display:block;padding:5px;}
+#menu a:hover{text-decoration:underline;}
 #jobs{width:960px;margin:0 auto;}
 #jobs > .date{margin-top:25px;font-weight:bold;}
 #jobs .job {margin:5px;}
