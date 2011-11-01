@@ -1,6 +1,10 @@
 *{margin:0;padding:0;border:none;}
 html{font-family:'Varela Round',verdana;}
 a{color:#88a230;}
+h1,h2,h3{margin:10px 0 3px 0;}
+h1{font-size:20px;}
+h2{font-size:18px;}
+h3{font-size:16px;}
 
 
 #menu{position:fixed;top:30px;left:5px;}
