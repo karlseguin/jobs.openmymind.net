@@ -15,6 +15,7 @@ module Store
   
   def self.get_jobs
     @@redis.mget(*@@redis.zrevrange('jobs', 0, 250)).map do |j|
+      next unless j
       job = JSON.parse(j)
       job['created_at'] = Time.at(job['created_at'])
       job
