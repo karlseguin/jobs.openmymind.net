@@ -34,7 +34,7 @@ Store.setup
   if location.length > 0
     tweet = tweet[0..(110 - location.length)] + ' (' + location + ')'
   end
-  tweet += ' ' + job['url']
+  tweet += ' ' + job['url'] + ' #job'
   
   Twitter.update(tweet)
   sleep(1)
