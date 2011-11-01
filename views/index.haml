@@ -26,5 +26,5 @@
               .details
                 %span.date=job['created_at'].strftime('%B %d, %Y %H:%M')
                 %span.url
-                  %a{:href => job['url']}=job['url']
+                  %a{:href => job['url']}= job['url'].length > 100 ? job['url'][0..100] + '...' : job['url']
               %span= job['description']
