@@ -4,9 +4,9 @@ require 'time'
 require 'net/http'
 
 def extract_ids(guid)
-  source = guid =~ /careers.joelonsoftware.com/ ? 3 : 2
-  id = /http:\/\/careers\.\w+\.com\/jobs\/(\d+)\//.match(guid).captures[0].to_i
-  return [source, id]
+  return nil if guid =~ /careers.joelonsoftware.com/
+  id = /http:\/\/careers\.stackoverflow\.com\/jobs\/(\d+)\//.match(guid).captures[0].to_i
+  return [2, id]
 end
 
 def extract_title_parts(title)
@@ -24,9 +24,11 @@ end
 response = Net::HTTP.get_response(URI.parse('http://careers.stackoverflow.com/jobs/feed'))
 rss = RSS::Parser.parse(response.body, false)
 rss.items.each do |job|
+  id_parts = extract_ids(job.guid.to_s)
+  next unless id_parts
+  
   data = {:created_at => job.date.to_i, :description => job.description, :url => job.link, }
   
-  id_parts = extract_ids(job.guid.to_s)
   data[:source] = id_parts[0]
   data[:source_id] = id_parts[1]
   
