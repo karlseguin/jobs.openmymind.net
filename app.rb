@@ -14,6 +14,6 @@ get '/rss' do
 end
 
 def setup_jobs
-  cache_control :public, :max_age => 360
+  cache_control :public, :max_age => 60
   @jobs = Store.get_jobs
 end
