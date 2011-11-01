@@ -1,4 +1,3 @@
-
 require 'sinatra'
 require './app'
 require './lib/store'
