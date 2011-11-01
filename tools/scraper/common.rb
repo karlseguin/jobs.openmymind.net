@@ -7,15 +7,14 @@ require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'store')
 
 module Store
   def self.insert(job)
-    key = "#{job[:source]}:#{job[:source_id]}"
-    full_key = "job:#{key}"
+    key = "job:#{job[:source]}:#{job[:source_id]}"
     serialized_job = job.to_json
-    if @@redis.exists(full_key)
-      @@redis.set(full_key, serialized_job)
+    if @@redis.exists(key)
+      @@redis.set(key, serialized_job)
     else
       @@redis.multi do
-        @@redis.set(full_key, serialized_job)
-        @@redis.zadd('jobs', job[:created_at].to_i, full_key)
+        @@redis.set(key, serialized_job)
+        @@redis.zadd('jobs', job[:created_at], key)
       end
     end
     #$es.index({:description => Sanitize.clean(job[:description]), :location => job[:location]}, :id => key)
