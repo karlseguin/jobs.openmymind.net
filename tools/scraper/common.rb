@@ -15,6 +15,7 @@ module Store
       @@redis.multi do
         @@redis.set(key, serialized_job)
         @@redis.zadd('jobs', job[:created_at], key)
+        @@redis.rpush('jobs:new', key)
       end
     end
     #$es.index({:description => Sanitize.clean(job[:description]), :location => job[:location]}, :id => key)

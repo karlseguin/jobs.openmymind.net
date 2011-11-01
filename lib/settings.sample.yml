@@ -2,3 +2,8 @@ redis:
   host: localhost
   port: 6379
   database: 0
+twitter:
+  key: blahblah
+  secret: blahblahblah
+  oauth_token: token
+  oauth_secret: secret
