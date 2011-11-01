@@ -2,7 +2,7 @@ require_relative File.join('..', '..', 'lib', 'store')
 
 module Store
   def self.clean
-    keys = @@redis.zrange('jobs', 0, -500)
+    keys = @@redis.zrange('jobs', 0, -300)
     return unless keys.length > 0
     
     @@redis.del(*keys)
