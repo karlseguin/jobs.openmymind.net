@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var $jobs = $('#jobs').delegate('div.summary', 'click', showDetails).children('div.job');
-
+  
   var read = localStorage.getItem('read');
   read = read == null ? [] : read.split('|');
   for(var i = 0; i < read.length; ++i) {
@@ -14,6 +14,17 @@ $(document).ready(function() {
   }
   
   var $active = null;
+  var all = false;
+  
+  $('#toggle').click(function() {
+    if (all) { $jobs.removeClass('active').children('.desc').hide(); }
+    else { $jobs.addClass('active').children('.desc').show(); } 
+    
+    $active = null;
+    all = !all;
+    return false;
+  });
+  
   function showDetails() {
     var $summary = $(this);
     var $parent = $summary.parent().addClass('active')
