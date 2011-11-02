@@ -7,6 +7,8 @@ require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'store')
 
 module Store
   def self.insert(job)
+    return if Time.now.to_i - job[:created_at] > 86400
+    
     key = "job:#{job[:source]}:#{job[:source_id]}"
     serialized_job = job.to_json
     if @@redis.exists(key)
