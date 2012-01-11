@@ -27,7 +27,7 @@ rss.items.each do |job|
   id_parts = extract_ids(job.guid.to_s)
   next unless id_parts
   
-  data = {:created_at => job.date.to_i, :description => job.description, :url => job.link, }
+  data = {:created_at => job.date.utc.to_i, :description => job.description, :url => job.link, }
   
   data[:source] = id_parts[0]
   data[:source_id] = id_parts[1]

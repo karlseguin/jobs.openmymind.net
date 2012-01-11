@@ -24,7 +24,7 @@ end
 response = Net::HTTP.get_response(URI.parse('http://jobs.nodejs.org/a/jbb/find-jobs-rss'))
 rss = RSS::Parser.parse(response.body, false)
 rss.items.each do |job|
-  data = {:created_at => job.date.to_i, :description => job.description, :url => job.link, }
+  data = {:created_at => job.date.utc.to_i, :description => job.description, :url => job.link, }
   
   id_parts = extract_ids(job.guid.to_s)
   data[:source] = id_parts[0]

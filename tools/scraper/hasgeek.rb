@@ -14,7 +14,7 @@ end
 response = Net::HTTP.get_response(URI.parse('http://jobs.hasgeek.com/feed'))
 rss = SimpleRSS.parse(response.body)
 rss.items.each do |job|
-  data = {:title => job[:title], :created_at => job[:published].to_i, :description => CGI.unescapeHTML(job[:content].force_encoding("UTF-8")), :url => job[:link]}
+  data = {:title => job[:title], :created_at => job[:published].utc.to_i, :description => CGI.unescapeHTML(job[:content].force_encoding("UTF-8")), :url => job[:link]}
   id_parts = extract_ids(job[:id])
   data[:source] = id_parts[0]
   data[:source_id] = id_parts[1]

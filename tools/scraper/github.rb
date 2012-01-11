@@ -11,7 +11,7 @@ response = Net::HTTP.get_response(URI.parse('http://jobs.github.com/positions.js
 jobs = JSON.parse(response.body)
 jobs.each do |job|
   data = job.slice('company', 'location', 'created_at', 'company_url', 'title', 'url', 'id', 'description').symbolize_keys
-  data[:created_at] = Time.parse(data.delete(:created_at)).to_i
+  data[:created_at] = Time.parse(data.delete(:created_at)).utc.to_i
   data[:source] = source
   data[:source_id] = data.delete(:id)
   Store.insert(data)

@@ -18,7 +18,7 @@ end
 response = Net::HTTP.get_response(URI.parse('http://jobs.37signals.com/categories/2/jobs.rss'))
 rss = RSS::Parser.parse(response.body, false)
 rss.items.each do |job|
-  data = {:title => job.title, :created_at => job.date.to_i, :url => job.link}
+  data = {:title => job.title, :created_at => job.date.utc.to_i, :url => job.link}
   
   id_parts = extract_ids(job.guid.to_s)
   data[:source] = id_parts[0]
