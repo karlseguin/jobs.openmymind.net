@@ -4,8 +4,8 @@ require 'time'
 require 'net/http'
 
 def extract_ids(guid)
-  return nil if guid =~ /careers.joelonsoftware.com/
-  id = /http:\/\/careers\.stackoverflow\.com\/jobs\/(\d+)\//.match(guid).captures[0].to_i
+  return nil if guid =~ /careers.stackoverflow.com/
+  id = /http:\/\/careers\.joelonsoftware\.com\/jobs\/(\d+)\//.match(guid).captures[0].to_i
   return [2, id]
 end
 
