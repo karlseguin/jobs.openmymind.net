@@ -2,6 +2,7 @@ require_relative File.join('..', '..', 'lib', 'settings')
 require_relative File.join('..', '..', 'lib', 'store')
 require 'twitter'
 require 'json/ext'
+require 'net/http'
 
 Twitter.configure do |config|
   config.consumer_key = Settings.twitter['key']
@@ -11,15 +12,27 @@ Twitter.configure do |config|
 end
 
 module Store
-  def self.get_new_jobs
+  def self.get_new_job_key
     key = @@redis.lpop('jobs:new')
+  end
+  def self.get_job(key)
     key ? JSON.parse(@@redis.get(key)) : nil
   end
 end
 Store.setup
 
-job = Store.get_new_jobs
-exit unless job
+
+job = nil
+loop do
+  key = Store.get_new_job_key
+  job = Store.get_job(key)
+  exit unless job
+
+  break if Net::HTTP.get_response(URI.parse(job['url'])).code == '200'
+  Store.client.zrem('jobs', key)
+  Store.client.del(key)
+end
+
 
 location = ''
 if job['location'].is_a?(Array)
